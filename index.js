@@ -1,16 +1,47 @@
-const myEmojis = ["👨‍💻", "⛷", "🍲"];
+let myEmojis = ["👨‍💻", "⛷", "🍲"];
+const emojiContainer = document.getElementById('emojiContainer');
+const pushBtn = document.getElementById('push-btn');
+const unshiftBtn = document.getElementById('unshift-btn');
+const emojiInput = document.getElementById("emoji-input");
+const popBtn = document.getElementById("pop-btn");
+const shiftBtn = document.getElementById("shift-btn");
 
-myEmojis.forEach(element => {
-    console.log(element)
+let renderEmojis = () => {
+    emojiContainer.innerHTML='';
+    myEmojis.forEach(element => {
+    const emoji = document.createElement('span');
+    emoji.textContent = element;
+    emojiContainer.append(emoji);
+})};
+
+
+pushBtn.addEventListener('click', () => {
+    
+    if(emojiInput.value) {
+    myEmojis.push(emojiInput.value)
+    emojiInput.value = '';
+    renderEmojis();
+    }
+    
 });
 
-console.log(myEmojis.map(myEmojisItem => {
-    return myEmojisItem.slice();
-}))
+unshiftBtn.addEventListener('click', () => {
+    if(emojiInput.value) {
+    myEmojis.unshift(emojiInput.value)
+    emojiInput.value = '';
+    renderEmojis();
+    }
+    
+});
 
-const sweetArray = [2, 3, 4, 5, 35]
-const sweeterArray = sweetArray.map(sweetItem => {
-    return sweetItem * 2
-})
+popBtn.addEventListener('click', () => { 
+    myEmojis.pop()
+    renderEmojis(); 
+});
 
-console.log(sweeterArray)
+shiftBtn.addEventListener('click', () => {
+    myEmojis.shift()
+    renderEmojis();  
+});
+
+
